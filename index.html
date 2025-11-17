@@ -2,194 +2,377 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Royal Executive Access Portal</title>
+<title>Classified Royal Executive Intelligence Portal</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background-color: #0a1424;
-        color: white;
-        overflow-x: hidden;
-    }
+/* ---------------- GLOBAL STYLING ---------------- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #07101f;
+    color: white;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow-x: hidden;
+}
 
-    body::before {
-        content: "";
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 650px;
-        height: 650px;
-        background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Seal_of_the_President_of_the_United_States.svg/600px-Seal_of_the_President_of_the_United_States.svg.png") center/contain no-repeat;
-        opacity: 0.06;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-    }
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/2/27/US_Great_Seal_Obverse.png") center/contain no-repeat;
+    opacity: 0.05;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
 
-    #login-box {
-        width: 420px;
-        margin: 110px auto 0;
-        background-color: rgba(0,0,0,0.55);
-        padding: 32px;
-        border-radius: 12px;
-        border: 1px solid #284a7c;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
+/* ---------------- LOGIN BOX ---------------- */
+#login-box {
+    width: 420px;
+    margin: 130px auto;
+    background-color: rgba(0,0,0,0.55);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid #284a7c;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
 
-    h1 {
-        font-size: 26px;
-        margin-bottom: 20px;
-        color: #d4b45f;
-        letter-spacing: 1px;
-    }
+#login-box h1 {
+    color: #d4b45f;
+    font-size: 26px;
+}
 
-    label {
-        display: block;
-        text-align: left;
-        margin: 12px 0 6px;
-        opacity: .9;
-        font-weight: bold;
-    }
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    opacity: .85;
+}
 
-    input {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        font-size: 15px;
-        background-color: #13294b;
-        color: #fff;
-        margin-bottom: 16px;
-    }
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 15px;
+    background-color: #0d1d36;
+    border: 1px solid #274870;
+    border-radius: 8px;
+    color: white;
+}
 
-    #login-btn {
-        width: 100%;
-        padding: 12px;
-        background-color: #d4b45f;
-        color: #000;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: .2s;
-    }
+#login-btn {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    background-color: #d4b45f;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    #login-btn:hover {
-        background-color: #bfa04f;
-    }
+#warning {
+    font-size: 12px;
+    margin-top: 10px;
+    opacity: .6;
+}
 
-    #warning {
-        margin-top: 12px;
-        font-size: 12px;
-        opacity: .7;
-    }
+/* ---------------- SCAN SCREEN ---------------- */
+#scan-screen {
+    display: none;
+    text-align: center;
+    margin-top: 230px;
+    color: #d4b45f;
+    font-size: 28px;
+}
 
-    #scan-screen, #access-screen, #dashboard {
-        display: none;
-    }
+.dots span {
+    animation: blink 1.3s infinite;
+}
+@keyframes blink {
+    0% { opacity: .1 }
+    50% { opacity: 1 }
+    100% { opacity: .1 }
+}
 
-    #scan-screen {
-        text-align: center;
-        margin-top: 200px;
-        font-size: 24px;
-        color: #d4b45f;
-    }
+/* ---------------- ACCESS GRANTED SCREEN ---------------- */
+#access-screen {
+    display: none;
+    text-align: center;
+    margin-top: 200px;
+}
 
-    .dots span {
-        animation: blink 1.4s infinite;
-    }
+#access-screen h1 {
+    font-size: 50px;
+    color: #d4b45f;
+    text-shadow: 0 0 20px #d4b45f;
+}
 
-    @keyframes blink {
-        0% { opacity: .1; }
-        50% { opacity: 1; }
-        100% { opacity: .1; }
-    }
+#access-screen h2 {
+    margin-top: -10px;
+    font-size: 26px;
+}
 
-    #access-screen {
-        text-align: center;
-        margin-top: 180px;
-    }
+/* ---------------- DASHBOARD ---------------- */
+#dashboard {
+    display: none;
+    padding: 25px;
+    animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to   { opacity: 1 }
+}
 
-    #access-screen h1 {
-        font-size: 45px;
-        color: #d4b45f;
-        text-shadow: 0 0 20px #d4b45f;
-        margin-bottom: 10px;
-    }
+#dashboard-header h1 {
+    text-align: center;
+    margin-bottom: 8px;
+    color: #d4b45f;
+    font-size: 32px;
+}
 
-    #access-screen h2 {
-        font-size: 28px;
-        margin-top: 0;
-    }
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
 
-    #dashboard {
-        padding: 25px;
-        animation: fadeIn .8s ease-in-out;
-    }
+.tabs button {
+    background-color: #0d1d36;
+    padding: 12px 26px;
+    border: 1px solid #d4b45f;
+    border-radius: 8px;
+    margin: 0 6px;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+}
+.tabs button:hover {
+    background-color: #13294b;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
+.section {
+    display: none;
+    background-color: rgba(0,0,0,0.45);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #284a7c;
+    margin-bottom: 20px;
+}
 
-    #dashboard-header {
-        text-align: center;
-        margin-bottom: 25px;
-    }
+.section h2 {
+    color: #d4b45f;
+    font-size: 26px;
+}
 
-    #dashboard-header h1 {
-        font-size: 34px;
-        margin-bottom: 6px;
-        color: #d4b45f;
-    }
+.case, .file {
+    padding: 15px;
+    background-color: rgba(13, 29, 54, 0.7);
+    border: 1px solid #395b8a;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
 
-    #dashboard-header p {
-        opacity: .8;
-    }
+.source-btn {
+    background-color: #d4b45f;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-    .tabs {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
+#source-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    background-color: #0d1d36;
+    color: white;
+    border: 2px solid #d4b45f;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    z-index: 20;
+}
 
-    .tabs button {
-        background-color: #13294b;
-        color: white;
-        padding: 12px 22px;
-        margin: 0 6px;
-        border-radius: 6px;
-        border: 1px solid #d4b45f;
-        cursor: pointer;
-        font-size: 15px;
-        transition: .2s;
-    }
+#close-source {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #d4b45f;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+</style>
+</head>
 
-    .tabs button:hover {
-        background-color: #0d1f36;
-    }
+<body>
 
-    .section {
-        display: none;
-        background-color: rgba(0,0,0,0.40);
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #284a7c;
-        margin-bottom: 20px;
-    }
+<!-- ---------------- LOGIN BOX ---------------- -->
+<div id="login-box">
+    <h1>CLASSIFIED ACCESS</h1>
 
-    .section h2 {
-        color: #d4b45f;
-        font-size: 26px;
-        margin-bottom: 16px;
-    }
+    <label>Username</label>
+    <input id="username" placeholder="Enter credentials">
 
-    .case {
-        margin-bottom: 15px;
-        padding: 15px;
-        background-color: rgba(19,41,75,0.6);
-        border: 1px solid #395b8a;
-        border-radius: 8px;
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Enter secure key">
+
+    <button id="login-btn" onclick="login()">ENTER</button>
+
+    <p id="warning">Unauthorized access is prohibited and monitored.</p>
+</div>
+
+<!-- ---------------- SCAN SCREEN ---------------- -->
+<div id="scan-screen">
+    Scanning Identity<span class="dots"> <span>.</span><span>.</span><span>.</span> </span>
+</div>
+
+<!-- ---------------- ACCESS GRANTED SCREEN ---------------- -->
+<div id="access-screen">
+    <h1>ROYAL ACCESS GRANTED</h1>
+    <h2>Verification Completed — Queen Kathrine</h2>
+</div>
+
+<!-- ---------------- DASHBOARD ---------------- -->
+<div id="dashboard">
+    <div id="dashboard-header">
+        <h1>
+            Greetings Queen Kathrine. Your classified intelligence dashboard is now live.<br>
+            Welcome back, Your Majesty — all secure systems have been unlocked.
+        </h1>
+    </div>
+
+    <div class="tabs">
+        <button onclick="showSection('law')">U.S. Law</button>
+        <button onclick="showSection('political')">Political News</button>
+        <button onclick="showSection('diplomatic')">Diplomatic Affairs</button>
+        <button onclick="showSection('files')">Classified Files</button>
+    </div>
+
+    <!-- LAW -->
+    <div id="law" class="section">
+        <h2>U.S. Supreme Court / Federal Cases</h2>
+
+        <div class="case">
+            <strong>Case: Smith v. United States (Federal)</strong><br>
+            Major ruling regarding federal sentencing guidelines.
+            <br><button class="source-btn" onclick="showSource('https://www.supremecourt.gov')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>Emergency Injunction Request</strong><br>
+            Federal appeals court reviewing temporary block on new regulation.
+            <br><button class="source-btn" onclick="showSource('https://www.ca7.uscourts.gov')">View Source</button>
+        </div>
+    </div>
+
+    <!-- POLITICAL -->
+    <div id="political" class="section">
+        <h2>National Political Intelligence</h2>
+
+        <div class="case">
+            <strong>Congressional Briefing</strong><br>
+            New bipartisan proposal emerging around federal budgets.
+            <br><button class="source-btn" onclick="showSource('https://www.congress.gov')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>White House Statement</strong><br>
+            Press office releases updated national policy outline.
+            <br><button class="source-btn" onclick="showSource('https://www.whitehouse.gov/briefing-room')">View Source</button>
+        </div>
+    </div>
+
+    <!-- DIPLOMATIC -->
+    <div id="diplomatic" class="section">
+        <h2>Diplomatic & International Affairs</h2>
+
+        <div class="case">
+            <strong>U.S. Ambassador Brief</strong><br>
+            Strategic talks underway with allied nations.
+            <br><button class="source-btn" onclick="showSource('https://www.state.gov')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>Foreign Negotiation Update</strong><br>
+            Classified diplomatic session recently concluded.
+            <br><button class="source-btn" onclick="showSource('https://www.state.gov/press-releases')">View Source</button>
+        </div>
+    </div>
+
+    <!-- CLASSIFIED FILES -->
+    <div id="files" class="section">
+        <h2>Restricted Case Files</h2>
+
+        <div class="file">
+            <strong>File 7-A: Executive Observation Log</strong><br>
+            Activity monitored and documented under sealed operations.
+        </div>
+
+        <div class="file">
+            <strong>File 12-C: Interagency Coordination Brief</strong><br>
+            Details regarding multi-branch collaboration.
+        </div>
+    </div>
+</div>
+
+<!-- SOURCE POPUP -->
+<div id="source-popup">
+    <p id="source-text"></p>
+    <button id="close-source" onclick="closeSource()">Close</button>
+</div>
+
+<!-- ---------------- SCRIPT ---------------- -->
+<script>
+function login() {
+    let u = document.getElementById("username").value.toLowerCase();
+    let p = document.getElementById("password").value;
+
+    if (u === "kathrine" && p === "h@ppyWool78") {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("scan-screen").style.display = "block";
+
+        setTimeout(() => {
+            document.getElementById("scan-screen").style.display = "none";
+            document.getElementById("access-screen").style.display = "block";
+        }, 2500);
+
+        setTimeout(() => {
+            document.getElementById("access-screen").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+        }, 4700);
+
+    } else {
+        alert("Invalid credentials, access denied.");
     }
+}
+
+function showSection(id) {
+    document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
+    document.getElementById(id).style.display = "block";
+}
+
+function showSource(url) {
+    document.getElementById("source-text").innerHTML =
+        "Source:<br><a href='" + url + "' target='_blank' style='color:#d4b45f;'>" + url + "</a>";
+    document.getElementById("source-popup").style.display = "block";
+}
+
+function closeSource() {
+    document.getElementById("source-popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
