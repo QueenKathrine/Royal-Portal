@@ -2,128 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Classified Royal Executive Intelligence Portal</title>
+<title>Royal x Presidential Intelligence Command Portal</title>
 
 <style>
-/* ---------------- GLOBAL STYLING ---------------- */
+
+/* ------------------------------------------------ */
+/*                 GLOBAL AESTHETIC                 */
+/* ------------------------------------------------ */
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #07101f;
+    background-color: #050910;
     color: white;
     font-family: "Segoe UI", Arial, sans-serif;
     overflow-x: hidden;
 }
 
+/* LARGE BACKGROUND SEAL (STATIC – WATERMARK) */
 body::before {
     content: "";
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 800px;
-    height: 800px;
-    background: url("https://upload.wikimedia.org/wikipedia/commons/2/27/US_Great_Seal_Obverse.png") center/contain no-repeat;
-    opacity: 0.05;
+    width: 900px;
+    height: 900px;
+    background: url("https://i.imgur.com/rs5s83A.png") center/contain no-repeat;
+    opacity: 0.07;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: -2;
 }
 
-/* ---------------- LOGIN BOX ---------------- */
+/* FROSTED GLASS BACKGROUND EFFECT */
+.glass {
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(9px);
+}
+
+/* GOLD GLOW */
+.gold-glow {
+    box-shadow: 0 0 25px rgba(212,180,95,.4);
+}
+
+/* SUBTLE PARTICLES */
+#particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-image: url("https://i.imgur.com/fJBs1dc.png");
+    opacity: 0.20;
+    animation: floatParticles 25s linear infinite;
+}
+
+@keyframes floatParticles {
+    from { background-position: 0 0; }
+    to   { background-position: 1000px 1000px; }
+}
+
+/* TOP SMALL SEAL ABOVE LOGIN */
+#top-seal {
+    width: 160px;
+    margin: 35px auto -10px auto;
+    display: block;
+}
+
+/* ------------------------------------------------ */
+/*                   LOGIN BOX                      */
+/* ------------------------------------------------ */
+
 #login-box {
-    width: 420px;
-    margin: 130px auto;
-    background-color: rgba(0,0,0,0.55);
-    padding: 32px;
-    border-radius: 12px;
-    border: 1px solid #284a7c;
+    width: 450px;
+    margin: 140px auto;
+    padding: 35px;
+    border: 1px solid #d4b45f;
+    border-radius: 14px;
+    font-size: 17px;
     text-align: center;
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
 }
 
 #login-box h1 {
     color: #d4b45f;
-    font-size: 26px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 12px #d4b45f;
 }
 
 label {
     display: block;
     text-align: left;
-    margin-top: 10px;
-    opacity: .85;
+    margin-top: 12px;
+    color: #d4d4d4;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    margin-top: 8px;
-    font-size: 15px;
+    margin-top: 6px;
     background-color: #0d1d36;
-    border: 1px solid #274870;
-    border-radius: 8px;
+    border: 1px solid #3b5d8f;
+    border-radius: 6px;
     color: white;
+    font-size: 15px;
 }
 
 #login-btn {
     margin-top: 18px;
     width: 100%;
     padding: 12px;
-    background-color: #d4b45f;
+    background: linear-gradient(to bottom, #d4b45f, #bca056);
     border: none;
-    border-radius: 6px;
-    color: #000;
+    border-radius: 8px;
+    color: black;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 #warning {
     font-size: 12px;
     margin-top: 10px;
-    opacity: .6;
+    color: #c9c9c9;
+    opacity:.7;
 }
 
-/* ---------------- SCAN SCREEN ---------------- */
+/* ------------------------------------------------ */
+/*                  SCAN SCREEN                     */
+/* ------------------------------------------------ */
+
 #scan-screen {
     display: none;
     text-align: center;
-    margin-top: 230px;
+    margin-top: 260px;
+    font-size: 30px;
     color: #d4b45f;
-    font-size: 28px;
 }
 
-.dots span {
-    animation: blink 1.3s infinite;
-}
+.dots span { animation: blink 1.3s infinite; }
+
 @keyframes blink {
     0% { opacity: .1 }
     50% { opacity: 1 }
     100% { opacity: .1 }
 }
 
-/* ---------------- ACCESS GRANTED SCREEN ---------------- */
+/* ------------------------------------------------ */
+/*              ACCESS GRANTED SCREEN               */
+/* ------------------------------------------------ */
+
 #access-screen {
     display: none;
+    margin-top: 230px;
     text-align: center;
-    margin-top: 200px;
 }
 
 #access-screen h1 {
-    font-size: 50px;
+    font-size: 60px;
     color: #d4b45f;
-    text-shadow: 0 0 20px #d4b45f;
+    text-shadow: 0 0 25px #d4b45f;
 }
 
 #access-screen h2 {
-    margin-top: -10px;
-    font-size: 26px;
+    font-size: 30px;
+    margin-top: -8px;
 }
 
-/* ---------------- DASHBOARD ---------------- */
+/* ------------------------------------------------ */
+/*                   DASHBOARD                      */
+/* ------------------------------------------------ */
+
 #dashboard {
     display: none;
-    padding: 25px;
-    animation: fadeIn 1s;
+    padding: 30px;
+    animation: fadeIn 1s ease-in-out;
 }
+
 @keyframes fadeIn {
     from { opacity: 0 }
     to   { opacity: 1 }
@@ -131,9 +184,21 @@ input {
 
 #dashboard-header h1 {
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 33px;
     color: #d4b45f;
-    font-size: 32px;
+}
+
+/* TOP BAR */
+#top-bar {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,.4);
+    border-bottom: 1px solid #d4b45f;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 25px;
 }
 
 .tabs {
@@ -144,82 +209,119 @@ input {
 
 .tabs button {
     background-color: #0d1d36;
-    padding: 12px 26px;
+    padding: 12px 28px;
     border: 1px solid #d4b45f;
-    border-radius: 8px;
-    margin: 0 6px;
+    border-radius: 10px;
+    margin: 0 7px;
     color: white;
     cursor: pointer;
     transition: .2s;
 }
+
 .tabs button:hover {
-    background-color: #13294b;
+    background-color: #14294c;
+    box-shadow: 0 0 12px rgba(212,180,95,.4);
 }
+
+/* CONTENT SECTIONS */
 
 .section {
     display: none;
-    background-color: rgba(0,0,0,0.45);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #284a7c;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #2b4b78;
+    border-radius: 12px;
+    padding: 22px;
 }
 
 .section h2 {
+    font-size: 27px;
+    margin-bottom: 15px;
     color: #d4b45f;
-    font-size: 26px;
+    text-shadow: 0 0 12px #d4b45f;
 }
 
 .case, .file {
-    padding: 15px;
-    background-color: rgba(13, 29, 54, 0.7);
-    border: 1px solid #395b8a;
-    border-radius: 8px;
-    margin-bottom: 14px;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: rgba(13,29,54,0.7);
+    border: 1px solid #3b5d8f;
 }
 
 .source-btn {
+    margin-top: 8px;
     background-color: #d4b45f;
     border: none;
-    padding: 8px 12px;
-    margin-top: 6px;
     border-radius: 6px;
-    cursor: pointer;
+    padding: 7px 15px;
     font-weight: bold;
+    cursor: pointer;
 }
+
+/* POPUP WINDOW */
 
 #source-popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 420px;
+    width: 460px;
+    background-color: #0d1d36;
     padding: 20px;
     transform: translate(-50%, -50%);
-    background-color: #0d1d36;
-    color: white;
     border: 2px solid #d4b45f;
     border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,.8);
     z-index: 20;
 }
 
 #close-source {
-    margin-top: 10px;
-    padding: 8px 12px;
+    margin-top: 12px;
+    padding: 10px 14px;
     background-color: #d4b45f;
-    color: black;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
+
+/* ------------------------------------------------ */
+/*                 TERMINAL MODE                    */
+/* ------------------------------------------------ */
+
+#terminal-box {
+    display:none;
+    background-color:black;
+    color:#33ff33;
+    padding:15px;
+    border-radius:10px;
+    margin-top:25px;
+    font-family: "Courier New", monospace;
+    border:1px solid #2f8d2f;
+}
+
+#terminal-input {
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    background:#0d0d0d;
+    color:#33ff33;
+    font-family: "Courier New";
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- ---------------- LOGIN BOX ---------------- -->
-<div id="login-box">
+<div id="particles"></div>
+
+<!-- TOP SEAL -->
+<img id="top-seal" src="https://i.imgur.com/rs5s83A.png">
+
+<!-- LOGIN BOX -->
+<div id="login-box" class="glass gold-glow">
     <h1>CLASSIFIED ACCESS</h1>
 
     <label>Username</label>
@@ -233,24 +335,25 @@ input {
     <p id="warning">Unauthorized access is prohibited and monitored.</p>
 </div>
 
-<!-- ---------------- SCAN SCREEN ---------------- -->
-<div id="scan-screen">
-    Scanning Identity<span class="dots"> <span>.</span><span>.</span><span>.</span> </span>
-</div>
+<!-- SCAN SCREEN -->
+<div id="scan-screen">Scanning Identity<span class="dots"> <span>.</span><span>.</span><span>.</span> </span></div>
 
-<!-- ---------------- ACCESS GRANTED SCREEN ---------------- -->
+<!-- ACCESS GRANTED -->
 <div id="access-screen">
     <h1>ROYAL ACCESS GRANTED</h1>
     <h2>Verification Completed — Queen Kathrine</h2>
 </div>
 
-<!-- ---------------- DASHBOARD ---------------- -->
+<!-- DASHBOARD -->
 <div id="dashboard">
+
+    <div id="top-bar">
+        <span>Royal Intelligence Command System</span>
+        <span id="date"></span>
+    </div>
+
     <div id="dashboard-header">
-        <h1>
-            Greetings Queen Kathrine. Your classified intelligence dashboard is now live.<br>
-            Welcome back, Your Majesty — all secure systems have been unlocked.
-        </h1>
+        <h1>Greetings Queen Kathrine.<br>All secure channels have been unlocked.</h1>
     </div>
 
     <div class="tabs">
@@ -258,73 +361,147 @@ input {
         <button onclick="showSection('political')">Political News</button>
         <button onclick="showSection('diplomatic')">Diplomatic Affairs</button>
         <button onclick="showSection('files')">Classified Files</button>
+        <button onclick="showSection('terminal')">Terminal Mode</button>
     </div>
 
-    <!-- LAW -->
-    <div id="law" class="section">
-        <h2>U.S. Supreme Court / Federal Cases</h2>
+    <!-- LAW SECTION -->
+    <div id="law" class="section glass">
+
+        <h2>U.S. Supreme Court & Federal Court Briefings</h2>
 
         <div class="case">
-            <strong>Case: Smith v. United States (Federal)</strong><br>
-            Major ruling regarding federal sentencing guidelines.
+            <strong>Supreme Court — Major Constitutional Case</strong><br>
+            Arguments heard regarding the limits of federal executive authority.
             <br><button class="source-btn" onclick="showSource('https://www.supremecourt.gov')">View Source</button>
         </div>
 
         <div class="case">
-            <strong>Emergency Injunction Request</strong><br>
-            Federal appeals court reviewing temporary block on new regulation.
-            <br><button class="source-btn" onclick="showSource('https://www.ca7.uscourts.gov')">View Source</button>
+            <strong>DOJ Announces New Federal Action</strong><br>
+            National security-related charges filed under sealed records.
+            <br><button class="source-btn" onclick="showSource('https://www.justice.gov')">View Source</button>
         </div>
-    </div>
-
-    <!-- POLITICAL -->
-    <div id="political" class="section">
-        <h2>National Political Intelligence</h2>
 
         <div class="case">
-            <strong>Congressional Briefing</strong><br>
-            New bipartisan proposal emerging around federal budgets.
+            <strong>Appeals Court — Emergency Injunction</strong><br>
+            Circuit court reviewing sudden block on newly implemented regulation.
+            <br><button class="source-btn" onclick="showSource('https://www.ca7.uscourts.gov')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>High-Profile Federal Criminal Case</strong><br>
+            Ongoing testimony reveals new developments in multi-state investigation.
+            <br><button class="source-btn" onclick="showSource('https://www.fbi.gov/news')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>State Supreme Court Update</strong><br>
+            Landmark ruling expected to set nationwide precedent.
+            <br><button class="source-btn" onclick="showSource('https://www.ncsconline.org')">View Source</button>
+        </div>
+
+    </div>
+
+    <!-- POLITICAL SECTION -->
+    <div id="political" class="section glass">
+
+        <h2>U.S. Political Intelligence</h2>
+
+        <div class="case">
+            <strong>Congressional Bill Moving Forward</strong><br>
+            A bipartisan budget framework enters negotiation phase.
             <br><button class="source-btn" onclick="showSource('https://www.congress.gov')">View Source</button>
         </div>
 
         <div class="case">
-            <strong>White House Statement</strong><br>
-            Press office releases updated national policy outline.
+            <strong>White House Briefing</strong><br>
+            Press Secretary delivers updated national security priorities.
             <br><button class="source-btn" onclick="showSource('https://www.whitehouse.gov/briefing-room')">View Source</button>
         </div>
+
+        <div class="case">
+            <strong>National Economic Update</strong><br>
+            New forecasts released regarding inflation and federal resource allocation.
+            <br><button class="source-btn" onclick="showSource('https://www.whitehouse.gov/economy')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>Key Senate Committee Hearing</strong><br>
+            New policy proposals influence upcoming national legislation.
+            <br><button class="source-btn" onclick="showSource('https://www.senate.gov')">View Source</button>
+        </div>
+
     </div>
 
-    <!-- DIPLOMATIC -->
-    <div id="diplomatic" class="section">
+    <!-- DIPLOMATIC SECTION -->
+    <div id="diplomatic" class="section glass">
+
         <h2>Diplomatic & International Affairs</h2>
 
         <div class="case">
-            <strong>U.S. Ambassador Brief</strong><br>
-            Strategic talks underway with allied nations.
+            <strong>U.S. State Department Briefing</strong><br>
+            Diplomatic negotiations underway with key allied nations.
             <br><button class="source-btn" onclick="showSource('https://www.state.gov')">View Source</button>
         </div>
 
         <div class="case">
-            <strong>Foreign Negotiation Update</strong><br>
-            Classified diplomatic session recently concluded.
+            <strong>NATO Coordination Update</strong><br>
+            Joint defense initiatives entering advanced planning stage.
+            <br><button class="source-btn" onclick="showSource('https://www.nato.int')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>UN Security Council Update</strong><br>
+            Emergency discussions held on latest international conflict assessments.
+            <br><button class="source-btn" onclick="showSource('https://www.un.org/securitycouncil')">View Source</button>
+        </div>
+
+        <div class="case">
+            <strong>Foreign Minister Alliance Meeting</strong><br>
+            High-level dialogues regarding global economic stabilization.
             <br><button class="source-btn" onclick="showSource('https://www.state.gov/press-releases')">View Source</button>
         </div>
+
     </div>
 
-    <!-- CLASSIFIED FILES -->
-    <div id="files" class="section">
-        <h2>Restricted Case Files</h2>
+    <!-- CLASSIFIED FILES SECTION -->
+    <div id="files" class="section glass">
+
+        <h2>Restricted Case Files — Level Omega</h2>
 
         <div class="file">
             <strong>File 7-A: Executive Observation Log</strong><br>
-            Activity monitored and documented under sealed operations.
+            Internal surveillance and operational notes — restricted access.
         </div>
 
         <div class="file">
             <strong>File 12-C: Interagency Coordination Brief</strong><br>
-            Details regarding multi-branch collaboration.
+            Multi-division collaborative analysis.
         </div>
+
+        <div class="file">
+            <strong>File X-99: Redacted Operations</strong><br>
+            ████████████████████████████████████████████████████████
+        </div>
+
+        <div class="file">
+            <strong>Omega-Prime Directive</strong><br>
+            High-priority classification. Unauthorized distribution prohibited.
+        </div>
+
     </div>
+
+    <!-- TERMINAL MODE -->
+    <div id="terminal" class="section glass">
+        <h2>Royal Intelligence Terminal</h2>
+
+        <div id="terminal-box">
+            <div>> SYSTEM ONLINE...</div>
+            <div>> AWAITING COMMAND...</div>
+        </div>
+
+        <input id="terminal-input" placeholder="enter command..." onkeydown="terminalCommand(event)">
+    </div>
+
 </div>
 
 <!-- SOURCE POPUP -->
@@ -333,36 +510,49 @@ input {
     <button id="close-source" onclick="closeSource()">Close</button>
 </div>
 
-<!-- ---------------- SCRIPT ---------------- -->
 <script>
+
+/* ---------------- LOGIN LOGIC ---------------- */
+
 function login() {
     let u = document.getElementById("username").value.toLowerCase();
     let p = document.getElementById("password").value;
 
     if (u === "kathrine" && p === "h@ppyWool78") {
+
+        // Hide login
         document.getElementById("login-box").style.display = "none";
+
+        // Show scan
         document.getElementById("scan-screen").style.display = "block";
 
         setTimeout(() => {
             document.getElementById("scan-screen").style.display = "none";
             document.getElementById("access-screen").style.display = "block";
-        }, 2500);
+        }, 2300);
 
         setTimeout(() => {
             document.getElementById("access-screen").style.display = "none";
             document.getElementById("dashboard").style.display = "block";
-        }, 4700);
+        }, 4500);
 
     } else {
-        alert("Invalid credentials, access denied.");
+        alert("Invalid credentials.");
     }
 }
 
+/* CLOCK */
+document.getElementById("date").innerHTML = new Date().toLocaleString();
+
+/* SHOW SECTIONS */
 function showSection(id) {
     document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
     document.getElementById(id).style.display = "block";
+
+    if (id === "terminal") document.getElementById("terminal-box").innerHTML = "> SYSTEM ONLINE...";
 }
 
+/* SOURCE POPUP */
 function showSource(url) {
     document.getElementById("source-text").innerHTML =
         "Source:<br><a href='" + url + "' target='_blank' style='color:#d4b45f;'>" + url + "</a>";
@@ -372,6 +562,22 @@ function showSource(url) {
 function closeSource() {
     document.getElementById("source-popup").style.display = "none";
 }
+
+/* TERMINAL MODE */
+function terminalCommand(e) {
+    if (e.key === "Enter") {
+        let input = document.getElementById("terminal-input").value;
+        let box = document.getElementById("terminal-box");
+        box.innerHTML += "<br>> " + input;
+
+        if (input.toLowerCase() === "scan docket") box.innerHTML += "<br>> FETCHING COURT DATA...";
+        if (input.toLowerCase() === "refresh intel") box.innerHTML += "<br>> UPDATING FEEDS...";
+        if (input.toLowerCase() === "clear") box.innerHTML = "> SYSTEM RESET...";
+
+        document.getElementById("terminal-input").value = "";
+    }
+}
+
 </script>
 
 </body>
